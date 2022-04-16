@@ -1,0 +1,30 @@
+[
+	{
+		"id": 1,
+		"name": "Commercial",
+		"description": "Commercial photography is a genre that encompasses any photos used for a business or publication. “It is photography that helps sell things,” says photographer Andrew Bennett.",
+		"image": "https://i.ibb.co/tJ3NZkG/Commercial.webp",
+		"price": 450
+	},
+	{
+		"id": 2,
+		"name": "Portraits",
+		"description": "Portrait photography, or portraiture, is a type of photography aimed toward capturing the personality of a person or group of people by using effective lighting, backdrops, and poses. A portrait photograph may be artistic or clinical.",
+		"image": "https://i.ibb.co/tx8yC9B/Portraits.webp",
+		"price": 590
+	},
+	{
+		"id": 3,
+		"name": "Family",
+		"description": "Like any collection of family photographs, it was a random selection that told only fragments of a story. The real tale would be revealed by the pictures that were missing or never even taken at all, not the ones that had been so carefully framed or packed away neatly in an envelope.",
+		"image": "https://i.ibb.co/FgHGvkd/Family.webp",
+		"price": 390
+	},
+	{
+		"id": 4,
+		"name": "Maternity",
+		"description": "The ideal time to schedule your maternity photo session is usually in the third trimester, between 26 and 34 weeks (around the 7th and 8th month of pregnancy). Once you're in your last trimester, your belly starts to become more pronounced, with a nice round shape.",
+		"image": "https://i.ibb.co/yntZNkS/Maternity.webp",
+		"price": 620
+	}
+]

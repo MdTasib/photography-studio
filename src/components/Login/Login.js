@@ -1,6 +1,6 @@
-import React, { useContext, useRef } from "react";
+import React, { useContext, useRef, useState } from "react";
 import logo from "../../assets/icon/cemera.png";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
 	sendPasswordResetEmail,
 	signInWithEmailAndPassword,
@@ -8,22 +8,35 @@ import {
 import auth from "../../firebase.init";
 import toast from "react-hot-toast";
 import { UserAuth } from "../../App";
+import GoogleLogin from "../GoogleLogin/GoogleLogin";
 
 const Login = () => {
 	const emailRef = useRef("");
 	const passwordRef = useRef("");
 	const [loginUser, setLoginUser] = useContext(UserAuth);
+	const location = useLocation();
+	let navigate = useNavigate();
+	const [loading, isLoading] = useState(false);
 
-	const handleSubmit = event => {
+	let from = location.state?.from?.pathname || "/";
+
+	const handleSubmit = async event => {
 		const email = emailRef.current.value;
 		const password = passwordRef.current.value;
+
 		event.preventDefault();
-		signInWithEmailAndPassword(auth, email, password)
+		isLoading(true);
+
+		await signInWithEmailAndPassword(auth, email, password)
 			.then(result => {
 				const user = result.user;
 				toast.success("User login successfully");
-				console.log(user);
 				setLoginUser(user);
+				isLoading(false);
+
+				if (user.uid) {
+					navigate(from, { replace: true });
+				}
 			})
 			.catch(error => {
 				errorMessage(error);
@@ -43,6 +56,18 @@ const Login = () => {
 		let errorMessage = error.message;
 		toast.error(errorMessage.split(":")[1]);
 	};
+
+	if (loading) {
+		return (
+			<div
+				style={{ height: "50vh" }}
+				className='p-5 d-flex align-items-center justify-content-center'>
+				<div className='spinner-border' role='status'>
+					<span className='visually-hidden'>Loading...</span>
+				</div>
+			</div>
+		);
+	}
 
 	return (
 		<div className='singup p-5'>
@@ -85,6 +110,7 @@ const Login = () => {
 						Singup Now
 					</Link>
 				</div>
+				<GoogleLogin />
 			</div>
 		</div>
 	);

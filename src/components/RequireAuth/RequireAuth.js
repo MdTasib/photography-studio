@@ -6,11 +6,7 @@ const RequireAuth = ({ children }) => {
 	const [loginUser, setLoginUser] = useContext(UserAuth);
 	let location = useLocation();
 
-	if (loginUser.uir) {
-		// Redirect them to the /login page, but save the current location they were
-		// trying to go to when they were redirected. This allows us to send them
-		// along to that page after they login, which is a nicer user experience
-		// than dropping them off on the home page.
+	if (!loginUser.uid) {
 		return <Navigate to='/login' state={{ from: location }} replace />;
 	}
 

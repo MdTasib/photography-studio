@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { UserAuth } from "../../App";
 import useServices from "../../hooks/useService";
 
 const CheckOut = () => {
 	const { id } = useParams();
 	const [services, setServices] = useServices();
 	const [service, setService] = useState({});
+	const [loginUser, setLoginUser] = useContext(UserAuth);
 
 	useEffect(() => {
 		const findService = services.find(service => service.id == id);
@@ -22,11 +24,15 @@ const CheckOut = () => {
 							type='text'
 							className='form-control my-3'
 							placeholder='Name'
+							value={loginUser.displayName}
+							readOnly
 						/>
 						<input
 							type='email'
 							className='form-control my-3'
 							placeholder='Email'
+							value={loginUser.email}
+							readOnly
 						/>
 						<input
 							type='phone'
@@ -34,11 +40,12 @@ const CheckOut = () => {
 							placeholder='Phone'
 						/>
 						<input
-							type='password'
+							type='test'
 							className='form-control my-3'
 							placeholder='Address'
 						/>
 						<input
+							onClick={event => event.preventDefault()}
 							type='submit'
 							className='form-control btn btn-dark'
 							value='Checkout'

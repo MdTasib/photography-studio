@@ -1,7 +1,7 @@
 import React, { useContext, useRef, useState } from "react";
 import "./Singup.css";
 import logo from "../../assets/icon/cemera.png";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
 	createUserWithEmailAndPassword,
 	sendEmailVerification,
@@ -10,6 +10,7 @@ import {
 import auth from "../../firebase.init";
 import toast from "react-hot-toast";
 import { UserAuth } from "../../App";
+import GoogleLogin from "../GoogleLogin/GoogleLogin";
 
 const Singup = () => {
 	const [loginUser, setLoginUser] = useContext(UserAuth);
@@ -17,6 +18,10 @@ const Singup = () => {
 	const emailRef = useRef("");
 	const passwordRef = useRef("");
 	const confirmPasswordRef = useRef("");
+	const location = useLocation();
+	let navigate = useNavigate();
+
+	let from = location.state?.from?.pathname || "/";
 
 	const handleSubmit = event => {
 		event.preventDefault();
@@ -34,8 +39,10 @@ const Singup = () => {
 					updateUserProfile();
 					userVerifyEmail();
 					setLoginUser(user);
-					console.log(user);
 					toast.success("User created successfully");
+					if (user.uid) {
+						navigate(from, { replace: true });
+					}
 				})
 				.catch(error => {
 					errorMessage(error);
@@ -114,6 +121,7 @@ const Singup = () => {
 						</small>
 					</Link>
 				</div>
+				<GoogleLogin />
 			</div>
 		</div>
 	);

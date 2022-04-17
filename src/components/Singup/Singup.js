@@ -2,7 +2,11 @@ import React, { useRef } from "react";
 import "./Singup.css";
 import logo from "../../assets/icon/cemera.png";
 import { Link } from "react-router-dom";
-import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import {
+	createUserWithEmailAndPassword,
+	sendEmailVerification,
+	updateProfile,
+} from "firebase/auth";
 import auth from "../../firebase.init";
 import toast from "react-hot-toast";
 
@@ -26,12 +30,12 @@ const Singup = () => {
 				.then(result => {
 					const user = result.user;
 					updateUserProfile();
+					userVerifyEmail();
 					console.log(user);
 					toast.success("User created successfully");
 				})
 				.catch(error => {
-					let errorMessage = error.message;
-					toast.error(errorMessage.split(":")[1]);
+					errorMessage(error);
 				});
 		}
 	};
@@ -40,7 +44,22 @@ const Singup = () => {
 		const name = nameRef.current.value;
 		updateProfile(auth.currentUser, { displayName: name })
 			.then(() => {})
-			.catch(error => console.log(error.message));
+			.catch(error => {
+				errorMessage(error);
+			});
+	};
+
+	const userVerifyEmail = () => {
+		sendEmailVerification(auth.currentUser)
+			.then(() => toast.success("Verify email sending"))
+			.catch(error => {
+				errorMessage(error);
+			});
+	};
+
+	const errorMessage = error => {
+		let errorMessage = error.message;
+		toast.error(errorMessage.split(":")[1]);
 	};
 
 	return (

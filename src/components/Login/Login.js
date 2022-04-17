@@ -23,19 +23,22 @@ const Login = () => {
 				console.log(user);
 			})
 			.catch(error => {
-				let errorMessage = error.message;
-				toast.error(errorMessage.split(":")[1]);
+				errorMessage(error);
 			});
 	};
 
 	const handleForgetPassword = () => {
 		const email = emailRef.current.value;
 		sendPasswordResetEmail(auth, email)
-			.then(() => toast.success("Please check your email"))
+			.then(() => toast.success("Please check your email and new password set"))
 			.catch(error => {
-				let errorMessage = error.message;
-				toast.error(errorMessage.split(":")[1]);
+				errorMessage(error);
 			});
+	};
+
+	const errorMessage = error => {
+		let errorMessage = error.message;
+		toast.error(errorMessage.split(":")[1]);
 	};
 
 	return (

@@ -1,7 +1,10 @@
 import React, { useRef } from "react";
 import logo from "../../assets/icon/cemera.png";
 import { Link } from "react-router-dom";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import {
+	sendPasswordResetEmail,
+	signInWithEmailAndPassword,
+} from "firebase/auth";
 import auth from "../../firebase.init";
 import toast from "react-hot-toast";
 
@@ -10,10 +13,9 @@ const Login = () => {
 	const passwordRef = useRef("");
 
 	const handleSubmit = event => {
-		event.preventDefault();
 		const email = emailRef.current.value;
 		const password = passwordRef.current.value;
-
+		event.preventDefault();
 		signInWithEmailAndPassword(auth, email, password)
 			.then(result => {
 				const user = result.user;
@@ -25,6 +27,17 @@ const Login = () => {
 				toast.error(errorMessage.split(":")[1]);
 			});
 	};
+
+	const handleForgetPassword = () => {
+		const email = emailRef.current.value;
+		sendPasswordResetEmail(auth, email)
+			.then(() => toast.success("Please check your email"))
+			.catch(error => {
+				let errorMessage = error.message;
+				toast.error(errorMessage.split(":")[1]);
+			});
+	};
+
 	return (
 		<div className='singup p-5'>
 			<div className='container w-50'>
@@ -47,6 +60,7 @@ const Login = () => {
 						required
 					/>
 					<Link
+						onClick={handleForgetPassword}
 						to='/login'
 						className='text-decoration-none text-primary d-block mb-3 fw-bold'>
 						Forget Password ?

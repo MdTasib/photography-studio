@@ -3,7 +3,7 @@ import logo from "../../assets/icon/cemera.png";
 
 const Footer = () => {
 	return (
-		<div className='bg-dark py-5 text-light'>
+		<div className='bg-black py-5 text-light'>
 			<div className='container'>
 				<div className='row'>
 					<div className='col-md-3'>

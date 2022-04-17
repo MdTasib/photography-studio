@@ -4,7 +4,7 @@ import logo from "../../assets/icon/cemera.png";
 
 const Navbar = () => {
 	return (
-		<nav className='navbar navbar-expand-lg navbar-dark bg-dark'>
+		<nav className='navbar navbar-expand-lg navbar-dark bg-black'>
 			<div className='container'>
 				<Link className='navbar-brand d-flex align-items-center' to='/'>
 					<img src={logo} height='40' alt='' />

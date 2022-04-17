@@ -1,3 +1,4 @@
+import { Toaster } from "react-hot-toast";
 import { Route, Routes } from "react-router-dom";
 import CheckOut from "./components/CheckOut/CheckOut";
 import Footer from "./components/Footer/Footer";
@@ -11,6 +12,7 @@ function App() {
 	return (
 		<>
 			<Navbar />
+			<Toaster />
 			<Routes>
 				<Route path='/' element={<Home />} />
 				<Route path='/home' element={<Home />} />

@@ -11,7 +11,6 @@ const CheckOut = () => {
 		const findService = services.find(service => service.id == id);
 		setService(findService);
 	}, [id, services]);
-	console.log(service);
 
 	return (
 		<div className='py-4 container'>

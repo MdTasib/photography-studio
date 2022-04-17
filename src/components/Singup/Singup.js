@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useContext, useRef, useState } from "react";
 import "./Singup.css";
 import logo from "../../assets/icon/cemera.png";
 import { Link } from "react-router-dom";
@@ -9,8 +9,10 @@ import {
 } from "firebase/auth";
 import auth from "../../firebase.init";
 import toast from "react-hot-toast";
+import { UserAuth } from "../../App";
 
 const Singup = () => {
+	const [loginUser, setLoginUser] = useContext(UserAuth);
 	const nameRef = useRef("");
 	const emailRef = useRef("");
 	const passwordRef = useRef("");
@@ -31,6 +33,7 @@ const Singup = () => {
 					const user = result.user;
 					updateUserProfile();
 					userVerifyEmail();
+					setLoginUser(user);
 					console.log(user);
 					toast.success("User created successfully");
 				})

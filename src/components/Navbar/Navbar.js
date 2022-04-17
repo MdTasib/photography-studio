@@ -1,8 +1,27 @@
-import React from "react";
+import { onAuthStateChanged, signOut } from "firebase/auth";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { UserAuth } from "../../App";
 import logo from "../../assets/icon/cemera.png";
+import auth from "../../firebase.init";
 
 const Navbar = () => {
+	const [loginUser, setLoginUser] = useContext(UserAuth);
+
+	useEffect(() => {
+		onAuthStateChanged(auth, user => {
+			if (user) {
+				setLoginUser(user);
+			} else {
+				setLoginUser({});
+			}
+		});
+	}, [setLoginUser]);
+
+	const handleLogOut = () => {
+		signOut(auth).then(() => {});
+	};
+
 	return (
 		<nav className='navbar navbar-expand-lg navbar-dark bg-black'>
 			<div className='container'>
@@ -38,14 +57,17 @@ const Navbar = () => {
 							</Link>
 						</li>
 						<li className='nav-item'>
-							<Link className='nav-link' to='/login'>
-								Singin
-							</Link>
-						</li>
-						<li className='nav-item'>
-							<Link className='nav-link' to='/singup'>
-								Singup
-							</Link>
+							{loginUser.uid ? (
+								<button
+									onClick={handleLogOut}
+									className='btn btn-sm btn-light mt-1'>
+									Log out
+								</button>
+							) : (
+								<Link className='nav-link' to='/login'>
+									Login
+								</Link>
+							)}
 						</li>
 					</ul>
 				</div>

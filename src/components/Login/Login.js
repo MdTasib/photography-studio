@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useContext, useRef } from "react";
 import logo from "../../assets/icon/cemera.png";
 import { Link } from "react-router-dom";
 import {
@@ -7,10 +7,12 @@ import {
 } from "firebase/auth";
 import auth from "../../firebase.init";
 import toast from "react-hot-toast";
+import { UserAuth } from "../../App";
 
 const Login = () => {
 	const emailRef = useRef("");
 	const passwordRef = useRef("");
+	const [loginUser, setLoginUser] = useContext(UserAuth);
 
 	const handleSubmit = event => {
 		const email = emailRef.current.value;
@@ -21,6 +23,7 @@ const Login = () => {
 				const user = result.user;
 				toast.success("User login successfully");
 				console.log(user);
+				setLoginUser(user);
 			})
 			.catch(error => {
 				errorMessage(error);

@@ -3,5 +3,5 @@
 }
 
 .card:hover img {
-	filter: brightness(85%) contrast(115%);
+	filter: brightness(85%) contrast(100%);
 }

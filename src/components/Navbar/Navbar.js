@@ -8,7 +8,7 @@ const Navbar = () => {
 			<div className='container'>
 				<Link className='navbar-brand d-flex align-items-center' to='/'>
 					<img src={logo} height='40' alt='' />
-					<span className='pt-2 ps-4'>PHOTOGRAPHY STUDIO</span>
+					<small className='pt-2 ps-4'>PHOTOGRAPHY STUDIO</small>
 				</Link>
 				<button
 					className='navbar-toggler'

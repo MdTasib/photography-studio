@@ -25,14 +25,14 @@ const Login = () => {
 		const password = passwordRef.current.value;
 
 		event.preventDefault();
-		isLoading(true);
+		// isLoading(true);
 
 		await signInWithEmailAndPassword(auth, email, password)
 			.then(result => {
 				const user = result.user;
 				toast.success("User login successfully");
 				setLoginUser(user);
-				isLoading(false);
+				// isLoading(false);
 
 				if (user.uid) {
 					navigate(from, { replace: true });
@@ -57,17 +57,17 @@ const Login = () => {
 		toast.error(errorMessage.split(":")[1]);
 	};
 
-	if (loading) {
-		return (
-			<div
-				style={{ height: "50vh" }}
-				className='p-5 d-flex align-items-center justify-content-center'>
-				<div className='spinner-border' role='status'>
-					<span className='visually-hidden'>Loading...</span>
-				</div>
-			</div>
-		);
-	}
+	// if (loading) {
+	// 	return (
+	// 		<div
+	// 			style={{ height: "50vh" }}
+	// 			className='p-5 d-flex align-items-center justify-content-center'>
+	// 			<div className='spinner-border' role='status'>
+	// 				<span className='visually-hidden'>Loading...</span>
+	// 			</div>
+	// 		</div>
+	// 	);
+	// }
 
 	return (
 		<div className='singup p-5'>

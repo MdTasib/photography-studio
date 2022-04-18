@@ -12,7 +12,7 @@ const Blog = () => {
 					<h5 className='card-title'>
 						Difference between <b>authorization</b> and <b>authentication</b>
 					</h5>
-					<p className='card-text'>
+					<div className='card-text'>
 						<h5>Authorization</h5>
 						<ul>
 							<li>
@@ -21,8 +21,8 @@ const Blog = () => {
 							<li>Authorization always takes place after authentication.</li>
 							<li>Determines what users can and cannot access</li>
 						</ul>
-					</p>
-					<p className='card-text'>
+					</div>
+					<div className='card-text'>
 						<h5>Authentication</h5>
 						<ul>
 							<li>Authentication verifies who the user is.</li>
@@ -32,20 +32,20 @@ const Blog = () => {
 							</li>
 							<li>Determines whether users are who they claim to be</li>
 						</ul>
-					</p>
+					</div>
 				</div>
 			</div>
 			<div className='card mb-3'>
 				<img src={image2} className='card-img-top' alt='...' />
 				<div className='card-body'>
-					<p className='card-text'>
+					<div className='card-text'>
 						<h5 className='card-title'>Why are you using firebase?</h5>
 						Google Firebase offers many features that pitch it as a backend
 						development tool for web and mobile apps. Firebase features include
 						authentication, realtime databases, firestore, hosting, cloud
 						functionality, and more.
-					</p>
-					<p className='card-text'>
+					</div>
+					<div className='card-text'>
 						<h5 className='card-title'>
 							What other options do you have to implement authentication?
 						</h5>
@@ -55,7 +55,7 @@ const Blog = () => {
 							<li>Digest</li>
 							<li>OAuth</li>
 						</ul>
-					</p>
+					</div>
 				</div>
 			</div>
 			<div className='card mb-3'>
@@ -64,7 +64,7 @@ const Blog = () => {
 					<h4 className='card-title'>
 						What other services does firebase provide other than authentication
 					</h4>
-					<p className='card-text'>
+					<div className='card-text'>
 						<h5>Firebase provides us with more services</h5>
 						<ul>
 							<li>Realtime Database</li>
@@ -75,7 +75,7 @@ const Blog = () => {
 							<li>Test Lab</li>
 							<li>Crash Reporting</li>
 						</ul>
-					</p>
+					</div>
 				</div>
 			</div>
 		</div>

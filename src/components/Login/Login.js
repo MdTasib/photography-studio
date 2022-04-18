@@ -16,7 +16,6 @@ const Login = () => {
 	const [loginUser, setLoginUser] = useContext(UserAuth);
 	const location = useLocation();
 	let navigate = useNavigate();
-	const [loading, isLoading] = useState(false);
 
 	let from = location.state?.from?.pathname || "/";
 
@@ -56,18 +55,6 @@ const Login = () => {
 		let errorMessage = error.message;
 		toast.error(errorMessage.split(":")[1]);
 	};
-
-	// if (loading) {
-	// 	return (
-	// 		<div
-	// 			style={{ height: "50vh" }}
-	// 			className='p-5 d-flex align-items-center justify-content-center'>
-	// 			<div className='spinner-border' role='status'>
-	// 				<span className='visually-hidden'>Loading...</span>
-	// 			</div>
-	// 		</div>
-	// 	);
-	// }
 
 	return (
 		<div className='singup p-5'>

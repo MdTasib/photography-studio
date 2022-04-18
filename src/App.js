@@ -16,7 +16,6 @@ export const UserAuth = createContext();
 
 function App() {
 	const [loginUser, setLoginUser] = useState({});
-	console.log("context api user - ", loginUser);
 	return (
 		<>
 			<UserAuth.Provider value={[loginUser, setLoginUser]}>

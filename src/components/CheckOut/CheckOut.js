@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
+import toast from "react-hot-toast";
 import { useParams } from "react-router-dom";
 import { UserAuth } from "../../App";
 import useServices from "../../hooks/useService";
@@ -14,6 +15,13 @@ const CheckOut = () => {
 		const findService = services.find(service => service.id == id);
 		setService(findService);
 	}, [id, services]);
+
+	const handleBooking = event => {
+		event.preventDefault();
+		toast("Thanks for your booking", {
+			icon: "😍",
+		});
+	};
 
 	return (
 		<div className='py-4 container'>
@@ -46,10 +54,10 @@ const CheckOut = () => {
 							placeholder='Address'
 						/>
 						<input
-							onClick={event => event.preventDefault()}
+							onClick={handleBooking}
 							type='submit'
 							className='form-control btn btn-dark'
-							value='Checkout'
+							value='Booking'
 						/>
 					</form>
 				</div>
@@ -65,7 +73,9 @@ const CheckOut = () => {
 							<b>Price : </b>${service?.price}
 						</li>
 					</ul>
-					<button className='btn btn-dark'>Continue</button>
+					<button onClick={handleBooking} className='btn btn-dark'>
+						Continue
+					</button>
 				</div>
 			</div>
 		</div>

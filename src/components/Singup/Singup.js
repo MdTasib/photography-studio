@@ -18,17 +18,19 @@ const Singup = () => {
 	const emailRef = useRef("");
 	const passwordRef = useRef("");
 	const confirmPasswordRef = useRef("");
-	const location = useLocation();
 	let navigate = useNavigate();
+	const location = useLocation();
 
 	let from = location.state?.from?.pathname || "/";
 
+	// handle user singup email, password
 	const handleSubmit = event => {
 		event.preventDefault();
 		const email = emailRef.current.value;
 		const password = passwordRef.current.value;
 		const confirmPassword = confirmPasswordRef.current.value;
 
+		// check password and confirm password match
 		if (password !== confirmPassword) {
 			toast.error("Password must be same");
 			return;
@@ -50,6 +52,7 @@ const Singup = () => {
 		}
 	};
 
+	// user prifile implement (name)
 	const updateUserProfile = () => {
 		const name = nameRef.current.value;
 		updateProfile(auth.currentUser, { displayName: name })
@@ -59,6 +62,7 @@ const Singup = () => {
 			});
 	};
 
+	// user verify email send
 	const userVerifyEmail = () => {
 		sendEmailVerification(auth.currentUser)
 			.then(() => toast.success("Verify email sending"))
@@ -67,6 +71,7 @@ const Singup = () => {
 			});
 	};
 
+	// displayed error message
 	const errorMessage = error => {
 		let errorMessage = error.message;
 		toast.error(errorMessage.split(":")[1]);

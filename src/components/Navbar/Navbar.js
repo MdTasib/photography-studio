@@ -1,5 +1,5 @@
 import { onAuthStateChanged, signOut } from "firebase/auth";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { UserAuth } from "../../App";
 import logo from "../../assets/icon/cemera.png";
@@ -8,6 +8,7 @@ import auth from "../../firebase.init";
 const Navbar = () => {
 	const [loginUser, setLoginUser] = useContext(UserAuth);
 
+	// auth state changed
 	useEffect(() => {
 		onAuthStateChanged(auth, user => {
 			if (user) {
@@ -18,6 +19,7 @@ const Navbar = () => {
 		});
 	}, [setLoginUser]);
 
+	// user log out implement
 	const handleLogOut = () => {
 		signOut(auth).then(() => {});
 	};

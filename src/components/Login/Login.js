@@ -14,24 +14,22 @@ const Login = () => {
 	const emailRef = useRef("");
 	const passwordRef = useRef("");
 	const [loginUser, setLoginUser] = useContext(UserAuth);
-	const location = useLocation();
 	let navigate = useNavigate();
+	const location = useLocation();
 
 	let from = location.state?.from?.pathname || "/";
 
+	// handle user login email and password
 	const handleSubmit = async event => {
+		event.preventDefault();
 		const email = emailRef.current.value;
 		const password = passwordRef.current.value;
-
-		event.preventDefault();
-		// isLoading(true);
 
 		await signInWithEmailAndPassword(auth, email, password)
 			.then(result => {
 				const user = result.user;
 				toast.success("User login successfully");
 				setLoginUser(user);
-				// isLoading(false);
 
 				if (user.uid) {
 					navigate(from, { replace: true });
@@ -42,6 +40,7 @@ const Login = () => {
 			});
 	};
 
+	// handle forget password
 	const handleForgetPassword = () => {
 		const email = emailRef.current.value;
 		sendPasswordResetEmail(auth, email)
@@ -51,6 +50,7 @@ const Login = () => {
 			});
 	};
 
+	// displayed error message
 	const errorMessage = error => {
 		let errorMessage = error.message;
 		toast.error(errorMessage.split(":")[1]);

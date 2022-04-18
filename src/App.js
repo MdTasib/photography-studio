@@ -12,6 +12,7 @@ import NotFound from "./components/NotFound/NotFound";
 import RequireAuth from "./components/RequireAuth/RequireAuth";
 import Singup from "./components/Singup/Singup";
 
+// set context auth user
 export const UserAuth = createContext();
 
 function App() {

@@ -17,6 +17,7 @@ const GoogleLogin = () => {
 
 	let from = location.state?.from?.pathname || "/";
 
+	// google auth provider and implement user google sing in
 	const provider = new GoogleAuthProvider();
 	const handleGoogleSingin = () => {
 		signInWithPopup(auth, provider)
@@ -36,6 +37,7 @@ const GoogleLogin = () => {
 			});
 	};
 
+	// send verify email
 	const userVerifyEmail = () => {
 		sendEmailVerification(auth.currentUser)
 			.then(() => toast.success("Verify email sending"))
@@ -44,6 +46,7 @@ const GoogleLogin = () => {
 			});
 	};
 
+	// displayed error message
 	const errorMessage = error => {
 		let errorMessage = error.message;
 		toast.error(errorMessage.split(":")[1]);

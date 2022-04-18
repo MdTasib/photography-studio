@@ -9,6 +9,7 @@ const CheckOut = () => {
 	const [service, setService] = useState({});
 	const [loginUser, setLoginUser] = useContext(UserAuth);
 
+	// finding user choose service
 	useEffect(() => {
 		const findService = services.find(service => service.id == id);
 		setService(findService);

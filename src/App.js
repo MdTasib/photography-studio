@@ -1,6 +1,8 @@
 import { createContext, useState } from "react";
 import { Toaster } from "react-hot-toast";
 import { Route, Routes } from "react-router-dom";
+import About from "./components/About/About";
+import Blog from "./components/Blog/Blog";
 import CheckOut from "./components/CheckOut/CheckOut";
 import Footer from "./components/Footer/Footer";
 import Home from "./components/Home/Home";
@@ -31,6 +33,8 @@ function App() {
 							</RequireAuth>
 						}
 					/>
+					<Route path='/about' element={<About />} />
+					<Route path='/blog' element={<Blog />} />
 					<Route path='/login' element={<Login />} />
 					<Route path='/singup' element={<Singup />} />
 					<Route path='*' element={<NotFound />} />

@@ -9,4 +9,4 @@
 5. In the project, I used Firebase for the authentication.
 6. Technologies (frameworks, libraries) were used in this project `React Router Dom`, `Firebase`, `Bootstrap`, `Google Fonts`, `Tosts`, `React Firebase Hooks`
 
-### `PREVIEW` -- https://burj-al-arab-9bc3e.web.app
+### `PREVIEW` -- https://photography-studiobd.web.app
